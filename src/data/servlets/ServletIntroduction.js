@@ -46,7 +46,7 @@ public class LoginServlet extends HttpServlet {
 
 **What Happens:**
 1. You enter username/password and click "Login"
-2. Browser sends POST request to `/login`
+2. Browser sends POST request to \`/login\`
 3. Servlet receives request
 4. Servlet validates credentials with database
 5. If valid, creates session and redirects to home
