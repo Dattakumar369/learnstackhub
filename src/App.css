@@ -193,6 +193,17 @@ code {
   text-decoration: none;
 }
 
+.logo-image {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
+  transition: transform var(--transition-fast);
+}
+
+.logo:hover .logo-image {
+  transform: scale(1.05);
+}
+
 .logo-icon {
   width: 40px;
   height: 40px;

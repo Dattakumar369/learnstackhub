@@ -8,6 +8,7 @@ import LoginModal from './LoginModal';
 import ContributeModal from './ContributeModal';
 import AdSense from './AdSense';
 import { ADSENSE_CONFIG } from '../config/adsense';
+import logoImage from '../assets/LSH.png';
 
 function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -110,7 +111,7 @@ function Layout() {
           </button>
           
           <Link to="/" className="logo">
-            <div className="logo-icon">📚</div>
+            <img src={logoImage} alt="LearnStackHub Logo" className="logo-image" />
             <span>LearnStackHub</span>
           </Link>
 
