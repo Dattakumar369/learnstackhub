@@ -15,7 +15,7 @@ function App() {
   return (
     <AuthProvider>
       <ContributionProvider>
-        <Router basename="/learnstackhub">
+        <Router basename="/">
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />

@@ -4,7 +4,7 @@ import { getAllTopics, getTopicById } from '../data';
 
 function SEOHead({ title, description, keywords, topicId }) {
   const location = useLocation();
-  const baseUrl = 'https://dattakumar369.github.io/learnstackhub';
+  const baseUrl = 'https://learnstackhub.com';
   
   useEffect(() => {
     // Get topic data if topicId is provided

@@ -8,22 +8,22 @@
     <meta name="keywords" content="Java, Java Tutorial, Spring Boot, React, Full Stack, Programming, Learn Java, JDBC, Servlets, JSP, Java Programming, Java Development, Free Java Course" />
     <meta name="author" content="LearnStackHub" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <link rel="canonical" href="https://dattakumar369.github.io/learnstackhub/" />
+    <link rel="canonical" href="https://learnstackhub.com/" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://dattakumar369.github.io/learnstackhub/" />
+    <meta property="og:url" content="https://learnstackhub.com/" />
     <meta property="og:title" content="LearnStackHub - Master Java Full Stack Development" />
     <meta property="og:description" content="Your complete journey from Java fundamentals to cloud-ready full-stack development. Free interactive tutorials with live code execution." />
-    <meta property="og:image" content="https://dattakumar369.github.io/learnstackhub/LSH.png" />
+    <meta property="og:image" content="https://learnstackhub.com/LSH.png" />
     <meta property="og:site_name" content="LearnStackHub" />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://dattakumar369.github.io/learnstackhub/" />
+    <meta property="twitter:url" content="https://learnstackhub.com/" />
     <meta property="twitter:title" content="LearnStackHub - Master Java Full Stack Development" />
     <meta property="twitter:description" content="Your complete journey from Java fundamentals to cloud-ready full-stack development. Free interactive tutorials with live code execution." />
-    <meta property="twitter:image" content="https://dattakumar369.github.io/learnstackhub/LSH.png" />
+    <meta property="twitter:image" content="https://learnstackhub.com/LSH.png" />
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/LSH.png" />
@@ -45,8 +45,7 @@
         var pathParam = params.get('p');
         
         if (pathParam) {
-          var basePath = '/learnstackhub';
-          var restoredPath = basePath + (pathParam.startsWith('/') ? pathParam : '/' + pathParam);
+          var restoredPath = pathParam.startsWith('/') ? pathParam : '/' + pathParam;
           
           // Remove the 'p' parameter from URL
           params.delete('p');

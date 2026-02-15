@@ -5,24 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LearnStackHub - Master Java Full Stack Development</title>
   <script>
-    // Single Page Apps for GitHub Pages - Redirect 404s to index.html
+    // Single Page Apps - Redirect 404s to index.html
     // This ensures React Router can handle all routes correctly
-    var basePath = '/learnstackhub';
     var l = window.location;
     var path = l.pathname;
     
-    // Extract the route after the base path
-    if (path.startsWith(basePath)) {
-      path = path.slice(basePath.length);
+    // Remove leading slash if present
+    if (path.startsWith('/')) {
+      path = path.slice(1);
     }
-    if (!path || path === '/') {
+    if (!path || path === '') {
       path = '';
     }
     
     // Build redirect to index.html with path in query string
-    var redirectPath = basePath + '/index.html';
-    if (path && path !== '/') {
-      redirectPath += '?p=' + encodeURIComponent(path);
+    var redirectPath = '/index.html';
+    if (path && path !== '') {
+      redirectPath += '?p=' + encodeURIComponent('/' + path);
     }
     if (l.search) {
       redirectPath += (path ? '&' : '?') + l.search.slice(1);

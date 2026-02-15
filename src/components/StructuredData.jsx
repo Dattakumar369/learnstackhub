@@ -4,7 +4,7 @@ import { getTopicById, getAllTopics } from '../data';
 
 function StructuredData({ topicId, type = 'WebSite' }) {
   const location = useLocation();
-  const baseUrl = 'https://dattakumar369.github.io/learnstackhub';
+  const baseUrl = 'https://learnstackhub.com';
 
   useEffect(() => {
     // Remove existing structured data

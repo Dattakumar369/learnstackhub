@@ -2,7 +2,7 @@
 import { getAllTopics } from '../data';
 
 export const generateSitemap = () => {
-  const baseUrl = 'https://dattakumar369.github.io/learnstackhub';
+  const baseUrl = 'https://learnstackhub.com';
   const currentDate = new Date().toISOString().split('T')[0];
   
   // Static pages

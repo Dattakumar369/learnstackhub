@@ -10,7 +10,7 @@ const __dirname = path.dirname(__filename);
 
 // Import the generateSitemap function
 // Since we can't directly import from src in a Node script, we'll recreate the logic
-const baseUrl = 'https://dattakumar369.github.io/learnstackhub';
+const baseUrl = 'https://learnstackhub.com';
 const currentDate = new Date().toISOString().split('T')[0];
 
 // Static pages
