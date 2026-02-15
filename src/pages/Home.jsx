@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { BookOpen, Code, Play, Zap, ArrowRight, Clock, FileText, Users, Award, Rocket, Target, CheckCircle } from 'lucide-react';
 import { courseStructure, getAllTopics } from '../data';
+import SEOHead from '../components/SEOHead';
+import StructuredData from '../components/StructuredData';
 
 function Home() {
   const features = [
@@ -38,6 +40,8 @@ function Home() {
 
   return (
     <div className="home-page">
+      <SEOHead />
+      <StructuredData type="WebSite" />
       {/* Hero Section */}
       <section className="hero-section fade-in">
         <div className="hero-badge">

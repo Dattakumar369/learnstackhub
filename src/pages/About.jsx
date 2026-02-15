@@ -1,9 +1,16 @@
 import { Link } from 'react-router-dom';
 import { Target, Users, BookOpen, Code, Rocket, Heart, Award } from 'lucide-react';
+import SEOHead from '../components/SEOHead';
+import StructuredData from '../components/StructuredData';
 
 function About() {
   return (
     <div className="tutorial-page" style={{ maxWidth: '900px', margin: '0 auto', padding: '2rem' }}>
+      <SEOHead 
+        title="About Us - LearnStackHub" 
+        description="Learn about LearnStackHub - a free platform for learning Java Full Stack Development with interactive tutorials and live code execution."
+      />
+      <StructuredData type="Organization" />
       <h1 className="tutorial-title">About LearnStackHub</h1>
       <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem', fontSize: '1.1rem' }}>
         Your complete journey from Core Java fundamentals to cloud-ready full-stack development

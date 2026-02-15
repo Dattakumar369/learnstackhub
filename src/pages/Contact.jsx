@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, MessageSquare, Send, Github, Linkedin, Twitter } from 'lucide-react';
+import SEOHead from '../components/SEOHead';
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -31,6 +32,10 @@ function Contact() {
 
   return (
     <div className="tutorial-page" style={{ maxWidth: '900px', margin: '0 auto', padding: '2rem' }}>
+      <SEOHead 
+        title="Contact Us - LearnStackHub" 
+        description="Get in touch with LearnStackHub. Have questions, suggestions, or feedback? We'd love to hear from you!"
+      />
       <h1 className="tutorial-title">Contact Us</h1>
       <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem', fontSize: '1.1rem' }}>
         Have questions, suggestions, or feedback? We'd love to hear from you!

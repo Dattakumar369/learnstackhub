@@ -11,6 +11,193 @@ You click a button on a website. A few milliseconds later, you see a response. E
 
 ---
 
+## Real-Time Scenarios: Servlets in Daily Web Applications
+
+### Scenario 1: User Login (E-Commerce, Banking, Social Media)
+
+**Daily Life:** When you login to any website, a Servlet handles it:
+
+\`\`\`java
+// Real-world: Login on Amazon/Flipkart/Banking
+@WebServlet("/login")
+public class LoginServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        
+        // Validate credentials with database
+        User user = userDAO.authenticate(username, password);
+        
+        if (user != null) {
+            // Create session
+            HttpSession session = request.getSession();
+            session.setAttribute("user", user);
+            
+            // Redirect to home page
+            response.sendRedirect("home.jsp");
+        } else {
+            // Show error
+            request.setAttribute("error", "Invalid credentials");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        }
+    }
+}
+\`\`\`
+
+**What Happens:**
+1. You enter username/password and click "Login"
+2. Browser sends POST request to `/login`
+3. Servlet receives request
+4. Servlet validates credentials with database
+5. If valid, creates session and redirects to home
+6. If invalid, shows error message
+
+### Scenario 2: Product Search (E-Commerce)
+
+**Daily Life:** When you search for products, a Servlet processes it:
+
+\`\`\`java
+// Real-world: Search products on Amazon
+@WebServlet("/search")
+public class SearchServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+        String searchTerm = request.getParameter("q");
+        String category = request.getParameter("category");
+        double maxPrice = Double.parseDouble(request.getParameter("maxPrice"));
+        
+        // Search products in database
+        List<Product> products = productDAO.search(searchTerm, category, maxPrice);
+        
+        // Set results in request
+        request.setAttribute("products", products);
+        request.setAttribute("searchTerm", searchTerm);
+        
+        // Forward to results page
+        request.getRequestDispatcher("searchResults.jsp").forward(request, response);
+    }
+}
+\`\`\`
+
+**What Happens:**
+1. You type "laptop" in search box and click "Search"
+2. Browser sends GET request: `/search?q=laptop&category=electronics&maxPrice=50000`
+3. Servlet extracts search parameters
+4. Servlet queries database for matching products
+5. Servlet forwards results to JSP page
+6. JSP displays products on your screen
+
+### Scenario 3: Online Shopping Cart (E-Commerce)
+
+**Daily Life:** When you add items to cart, a Servlet manages it:
+
+\`\`\`java
+// Real-world: Add to cart on Amazon
+@WebServlet("/addToCart")
+public class AddToCartServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+        // Get user from session
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        
+        int productId = Integer.parseInt(request.getParameter("productId"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        
+        // Add to cart in database
+        cartDAO.addItem(user.getId(), productId, quantity);
+        
+        // Update session cart count
+        int cartCount = cartDAO.getCartCount(user.getId());
+        session.setAttribute("cartCount", cartCount);
+        
+        response.sendRedirect("cart.jsp?message=Item added to cart");
+    }
+}
+\`\`\`
+
+**What Happens:**
+1. You click "Add to Cart" button
+2. Browser sends POST request with product ID and quantity
+3. Servlet gets user from session
+4. Servlet saves item to cart in database
+5. Servlet updates cart count in session
+6. Servlet redirects to cart page with success message
+
+### Scenario 4: Online Banking Money Transfer
+
+**Daily Life:** When you transfer money online, a Servlet handles it:
+
+\`\`\`java
+// Real-world: Transfer money in banking app
+@WebServlet("/transfer")
+public class TransferServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        
+        String toAccount = request.getParameter("toAccount");
+        double amount = Double.parseDouble(request.getParameter("amount"));
+        
+        // Validate and transfer
+        try {
+            accountService.transfer(user.getAccountNumber(), toAccount, amount);
+            request.setAttribute("success", "Transfer successful!");
+        } catch (InsufficientBalanceException e) {
+            request.setAttribute("error", "Insufficient balance");
+        } catch (Exception e) {
+            request.setAttribute("error", "Transfer failed");
+        }
+        
+        request.getRequestDispatcher("transfer.jsp").forward(request, response);
+    }
+}
+\`\`\`
+
+**What Happens:**
+1. You enter recipient account and amount, click "Transfer"
+2. Browser sends POST request
+3. Servlet validates user session
+4. Servlet processes transfer (updates both accounts)
+5. Servlet shows success or error message
+6. Transaction recorded in database
+
+### Scenario 5: Online Food Ordering (Swiggy, Zomato)
+
+**Daily Life:** When you place a food order, a Servlet processes it:
+
+\`\`\`java
+// Real-world: Place order on Swiggy/Zomato
+@WebServlet("/placeOrder")
+public class PlaceOrderServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        Cart cart = (Cart) session.getAttribute("cart");
+        
+        String deliveryAddress = request.getParameter("address");
+        String paymentMethod = request.getParameter("payment");
+        
+        // Create order
+        Order order = orderService.createOrder(user, cart, deliveryAddress, paymentMethod);
+        
+        // Clear cart
+        session.removeAttribute("cart");
+        
+        // Redirect to order confirmation
+        response.sendRedirect("orderConfirmation.jsp?orderId=" + order.getId());
+    }
+}
+\`\`\`
+
+**What Happens:**
+1. You click "Place Order" after adding items
+2. Browser sends POST request with address and payment info
+3. Servlet creates order in database
+4. Servlet clears cart from session
+5. Servlet redirects to order confirmation page
+6. You see order details and tracking info
+
+---
+
 ## What Exactly is a Servlet?
 
 In simple terms, a Servlet is a Java class that:

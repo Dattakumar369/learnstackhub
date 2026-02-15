@@ -8,6 +8,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import Terms from './pages/Terms';
 import Contact from './pages/Contact';
 import About from './pages/About';
+import Sitemap from './pages/Sitemap';
 import './App.css';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
               <Route path="terms" element={<Terms />} />
               <Route path="contact" element={<Contact />} />
               <Route path="about" element={<About />} />
+              <Route path="sitemap.xml" element={<Sitemap />} />
             </Route>
           </Routes>
         </Router>

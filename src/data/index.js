@@ -65,7 +65,30 @@ import threadCreation from './corejava/multithreading/ThreadCreation';
 import threadLifecycle from './corejava/multithreading/ThreadLifecycle';
 import threadMethods from './corejava/multithreading/ThreadMethods';
 
+// MySQL
+import mysqlIntroduction from './mysql/MySQLIntroduction';
+import mysqlInstallation from './mysql/MySQLInstallation';
+import mysqlDataTypes from './mysql/MySQLDataTypes';
+import mysqlCreateDatabase from './mysql/MySQLCreateDatabase';
+import mysqlDDL from './mysql/MySQLDDL';
+import mysqlDQL from './mysql/MySQLDQL';
+import mysqlSelect from './mysql/MySQLSelect';
+import mysqlClauses from './mysql/MySQLClauses';
+import mysqlInsertUpdateDelete from './mysql/MySQLInsertUpdateDelete';
+import mysqlJoins from './mysql/MySQLJoins';
+import mysqlConstraints from './mysql/MySQLConstraints';
+import mysqlAggregateFunctions from './mysql/MySQLAggregateFunctions';
+import mysqlScalarFunctions from './mysql/MySQLScalarFunctions';
+import mysqlIndexes from './mysql/MySQLIndexes';
+import mysqlViews from './mysql/MySQLViews';
+import mysqlStoredProcedures from './mysql/MySQLStoredProcedures';
+import mysqlTriggers from './mysql/MySQLTriggers';
+import mysqlTransactions from './mysql/MySQLTransactions';
+import mysqlSubqueries from './mysql/MySQLSubqueries';
+import mysqlPrivileges from './mysql/MySQLPrivileges';
+
 // JDBC
+import jdbcProjectSetup from './jdbc/JdbcProjectSetup';
 import jdbcIntroduction from './jdbc/JdbcIntroduction';
 import jdbcDrivers from './jdbc/JdbcDrivers';
 import jdbcConnectionSteps from './jdbc/JdbcConnectionSteps';
@@ -76,6 +99,8 @@ import crudOperations from './jdbc/CrudOperations';
 import transactionManagement from './jdbc/TransactionManagement';
 
 // Servlets
+import servletProjectSetup from './servlets/ServletProjectSetup';
+import tomcatServer from './servlets/TomcatServer';
 import servletIntroduction from './servlets/ServletIntroduction';
 import servletLifecycle from './servlets/ServletLifecycle';
 import servletAPI from './servlets/ServletAPI';
@@ -87,6 +112,7 @@ import servletAnnotations from './servlets/ServletAnnotations';
 import servletSecurity from './servlets/ServletSecurity';
 
 // JSP
+import jspProjectSetup from './jsp/JspProjectSetup';
 import jspIntroduction from './jsp/JspIntroduction';
 import jspArchitecture from './jsp/JspArchitecture';
 import jspScriptingElements from './jsp/JspScriptingElements';
@@ -96,6 +122,19 @@ import jspActionTags from './jsp/JspActionTags';
 import jspExpressionLanguage from './jsp/JspExpressionLanguage';
 import jspJSTL from './jsp/JspJSTL';
 import jspCustomTags from './jsp/JspCustomTags';
+
+// Hibernate
+import hibernateProjectSetup from './hibernate/HibernateProjectSetup';
+import hibernateIntroduction from './hibernate/HibernateIntroduction';
+import hibernateArchitecture from './hibernate/HibernateArchitecture';
+import hibernateConfiguration from './hibernate/HibernateConfiguration';
+import hibernateSession from './hibernate/HibernateSession';
+import hibernateMapping from './hibernate/HibernateMapping';
+import hibernateHQL from './hibernate/HibernateHQL';
+import hibernateLocking from './hibernate/HibernateLocking';
+import hibernateCaching from './hibernate/HibernateCaching';
+import hibernateRelationships from './hibernate/HibernateRelationships';
+import hibernateBatchProcessing from './hibernate/HibernateBatchProcessing';
 
 export const courseStructure = {
   corejava: {
@@ -196,11 +235,84 @@ export const courseStructure = {
       }
     }
   },
+  mysql: {
+    title: "MySQL",
+    icon: "🐬",
+    color: "#00758F",
+    sections: {
+      basics: {
+        title: "Introduction & Setup",
+        topics: [
+          mysqlIntroduction,
+          mysqlInstallation,
+          mysqlDataTypes,
+          mysqlCreateDatabase
+        ]
+      },
+      ddl: {
+        title: "DDL - Data Definition Language",
+        topics: [
+          mysqlDDL
+        ]
+      },
+      dql: {
+        title: "DQL - Data Query Language",
+        topics: [
+          mysqlDQL,
+          mysqlSelect,
+          mysqlClauses
+        ]
+      },
+      dml: {
+        title: "DML - Data Manipulation Language",
+        topics: [
+          mysqlInsertUpdateDelete
+        ]
+      },
+      advancedSql: {
+        title: "Advanced SQL",
+        topics: [
+          mysqlJoins,
+          mysqlConstraints,
+          mysqlAggregateFunctions,
+          mysqlScalarFunctions
+        ]
+      },
+      optimization: {
+        title: "Performance & Security",
+        topics: [
+          mysqlIndexes,
+          mysqlPrivileges
+        ]
+      },
+      databaseObjects: {
+        title: "Database Objects",
+        topics: [
+          mysqlViews,
+          mysqlStoredProcedures,
+          mysqlTriggers
+        ]
+      },
+      advanced: {
+        title: "Advanced Features",
+        topics: [
+          mysqlTransactions,
+          mysqlSubqueries
+        ]
+      }
+    }
+  },
   jdbc: {
     title: "JDBC",
     icon: "🗄️",
     color: "#4479A1",
     sections: {
+      setup: {
+        title: "Project Setup",
+        topics: [
+          jdbcProjectSetup
+        ]
+      },
       basics: {
         title: "JDBC Fundamentals",
         topics: [
@@ -231,6 +343,13 @@ export const courseStructure = {
     icon: "🌐",
     color: "#E76F00",
     sections: {
+      setup: {
+        title: "Project Setup",
+        topics: [
+          servletProjectSetup,
+          tomcatServer
+        ]
+      },
       basics: {
         title: "Servlet Basics",
         topics: [
@@ -267,6 +386,12 @@ export const courseStructure = {
     icon: "📄",
     color: "#5382A1",
     sections: {
+      setup: {
+        title: "Project Setup",
+        topics: [
+          jspProjectSetup
+        ]
+      },
       basics: {
         title: "JSP Fundamentals",
         topics: [
@@ -302,8 +427,51 @@ export const courseStructure = {
         ]
       }
     }
+  },
+  hibernate: {
+    title: "Hibernate",
+    icon: "🔗",
+    color: "#BCAE79",
+    sections: {
+      setup: {
+        title: "Project Setup",
+        topics: [
+          hibernateProjectSetup
+        ]
+      },
+      basics: {
+        title: "Hibernate Fundamentals",
+        topics: [
+          hibernateIntroduction,
+          hibernateArchitecture,
+          hibernateConfiguration
+        ]
+      },
+      core: {
+        title: "Core Concepts",
+        topics: [
+          hibernateSession,
+          hibernateMapping
+        ]
+      },
+      queries: {
+        title: "Querying",
+        topics: [
+          hibernateHQL
+        ]
+      },
+      advanced: {
+        title: "Advanced Topics",
+        topics: [
+          hibernateLocking,
+          hibernateCaching,
+          hibernateRelationships,
+          hibernateBatchProcessing
+        ]
+      }
+    }
   }
-  // Future: hibernate, spring, springmvc, springboot, springcloud
+  // Future: spring, springmvc, springboot, springcloud
 };
 
 // Helper function to get all topics as flat array

@@ -34,23 +34,19 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Verify 404.html is copied
+      - name: Copy static files to dist
         run: |
-          echo "Checking for 404.html in dist..."
-          if [ -f "dist/404.html" ]; then
-            echo "✓ 404.html found in dist"
-            cat dist/404.html | head -5
-          else
-            echo "✗ 404.html NOT found, copying from public..."
-            if [ -f "public/404.html" ]; then
-              cp public/404.html dist/404.html
-              echo "✓ Copied 404.html to dist"
-            else
-              echo "✗ public/404.html also not found!"
-            fi
+          echo "Copying static files to dist..."
+          if [ -f "public/404.html" ]; then
+            cp public/404.html dist/404.html
+            echo "✓ Copied 404.html to dist"
+          fi
+          if [ -f "public/robots.txt" ]; then
+            cp public/robots.txt dist/robots.txt
+            echo "✓ Copied robots.txt to dist"
           fi
           echo "Files in dist root:"
-          ls -la dist/ | head -10
+          ls -la dist/ | head -15
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

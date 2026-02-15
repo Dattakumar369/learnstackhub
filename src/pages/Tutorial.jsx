@@ -30,6 +30,8 @@ import AdSense from '../components/AdSense';
 import { ADSENSE_CONFIG } from '../config/adsense';
 import { HierarchyDiagram, ConceptCube, ProcessCards, CodeFlowAnimation } from '../components/Diagram';
 import { ImageGif, ImageCard3D } from '../components/ImageGif';
+import SEOHead from '../components/SEOHead';
+import StructuredData from '../components/StructuredData';
 
 function Tutorial() {
   const { topicId } = useParams();
@@ -117,6 +119,7 @@ function Tutorial() {
   if (!currentTopic) {
     return (
       <div className="tutorial-page">
+        <SEOHead title="Topic Not Found - LearnStackHub" />
         <h1>Topic not found</h1>
         <p>The requested tutorial topic could not be found.</p>
         <Link to="/" className="btn btn-primary">Go Home</Link>
@@ -319,6 +322,8 @@ function Tutorial() {
 
   return (
     <div className="tutorial-page fade-in">
+      <SEOHead topicId={topicId} />
+      <StructuredData topicId={topicId} type="Article" />
       {/* Breadcrumb */}
       <div className="tutorial-breadcrumb">
         <Link to="/">Home</Link>

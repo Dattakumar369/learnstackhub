@@ -11,6 +11,178 @@ Here's a scenario: You're building an e-commerce app. Users sign up, browse prod
 
 ---
 
+## Real-Time Scenarios: JDBC in Daily Applications
+
+### Scenario 1: User Registration (E-Commerce, Social Media)
+
+**Daily Life:** When you sign up on any website, JDBC saves your data:
+
+\`\`\`java
+// Real-world: User registration on Amazon/Flipkart
+String sql = "INSERT INTO users (username, email, password, created_date) VALUES (?, ?, ?, ?)";
+PreparedStatement pstmt = conn.prepareStatement(sql);
+pstmt.setString(1, "john_doe");
+pstmt.setString(2, "john@example.com");
+pstmt.setString(3, encryptedPassword);
+pstmt.setDate(4, new Date());
+pstmt.executeUpdate();
+// Your account is now saved in database!
+\`\`\`
+
+**What Happens:**
+- User fills registration form
+- Java code receives data
+- JDBC connects to database
+- User data saved permanently
+- User can now login
+
+### Scenario 2: Product Search (E-Commerce)
+
+**Daily Life:** When you search for products, JDBC retrieves data:
+
+\`\`\`java
+// Real-world: Search "laptop" on Amazon
+String sql = "SELECT * FROM products WHERE name LIKE ? AND price <= ? AND stock > 0";
+PreparedStatement pstmt = conn.prepareStatement(sql);
+pstmt.setString(1, "%laptop%");
+pstmt.setDouble(2, 50000.0);
+ResultSet rs = pstmt.executeQuery();
+
+while (rs.next()) {
+    String name = rs.getString("name");
+    double price = rs.getDouble("price");
+    int stock = rs.getInt("stock");
+    // Display product on website
+}
+// Products displayed on your screen!
+\`\`\`
+
+**What Happens:**
+- You type "laptop" in search box
+- Java code sends query to database via JDBC
+- Database returns matching products
+- Products displayed on website
+
+### Scenario 3: Online Banking (Money Transfer)
+
+**Daily Life:** When you transfer money, JDBC ensures data integrity:
+
+\`\`\`java
+// Real-world: Transfer $500 from Account A to Account B
+conn.setAutoCommit(false); // Start transaction
+
+try {
+    // Debit from Account A
+    String sql1 = "UPDATE accounts SET balance = balance - ? WHERE account_number = ?";
+    PreparedStatement pstmt1 = conn.prepareStatement(sql1);
+    pstmt1.setDouble(1, 500);
+    pstmt1.setString(2, "ACC001");
+    pstmt1.executeUpdate();
+    
+    // Credit to Account B
+    String sql2 = "UPDATE accounts SET balance = balance + ? WHERE account_number = ?";
+    PreparedStatement pstmt2 = conn.prepareStatement(sql2);
+    pstmt2.setDouble(1, 500);
+    pstmt2.setString(2, "ACC002");
+    pstmt2.executeUpdate();
+    
+    // Create transaction record
+    String sql3 = "INSERT INTO transactions (from_account, to_account, amount) VALUES (?, ?, ?)";
+    PreparedStatement pstmt3 = conn.prepareStatement(sql3);
+    pstmt3.setString(1, "ACC001");
+    pstmt3.setString(2, "ACC002");
+    pstmt3.setDouble(3, 500);
+    pstmt3.executeUpdate();
+    
+    conn.commit(); // All operations succeed
+    System.out.println("Transfer successful!");
+    
+} catch (Exception e) {
+    conn.rollback(); // If error, undo all changes
+    System.out.println("Transfer failed!");
+}
+\`\`\`
+
+**What Happens:**
+- You initiate transfer
+- JDBC ensures both accounts updated or neither (transaction)
+- Transaction record created
+- Money transferred safely
+
+### Scenario 4: Online Food Ordering (Swiggy, Zomato)
+
+**Daily Life:** When you place an order, JDBC saves it:
+
+\`\`\`java
+// Real-world: Place food order
+String sql = "INSERT INTO orders (user_id, restaurant_id, total_amount, order_date, status) VALUES (?, ?, ?, ?, ?)";
+PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+pstmt.setInt(1, userId);
+pstmt.setInt(2, restaurantId);
+pstmt.setDouble(3, 450.0);
+pstmt.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
+pstmt.setString(5, "PENDING");
+pstmt.executeUpdate();
+
+// Get generated order ID
+ResultSet rs = pstmt.getGeneratedKeys();
+if (rs.next()) {
+    int orderId = rs.getInt(1);
+    // Save order items
+    for (MenuItem item : cartItems) {
+        String itemSql = "INSERT INTO order_items (order_id, item_id, quantity, price) VALUES (?, ?, ?, ?)";
+        PreparedStatement itemPstmt = conn.prepareStatement(itemSql);
+        itemPstmt.setInt(1, orderId);
+        itemPstmt.setInt(2, item.getId());
+        itemPstmt.setInt(3, item.getQuantity());
+        itemPstmt.setDouble(4, item.getPrice());
+        itemPstmt.executeUpdate();
+    }
+}
+// Order saved! You can track it now.
+\`\`\`
+
+**What Happens:**
+- You add items to cart and checkout
+- JDBC saves order in database
+- Order items saved with order ID
+- You receive order confirmation
+
+### Scenario 5: Hospital Appointment Booking
+
+**Daily Life:** When you book a doctor appointment, JDBC manages it:
+
+\`\`\`java
+// Real-world: Book doctor appointment
+String checkSql = "SELECT COUNT(*) FROM appointments WHERE doctor_id = ? AND appointment_date = ? AND status = 'CONFIRMED'";
+PreparedStatement checkPstmt = conn.prepareStatement(checkSql);
+checkPstmt.setInt(1, doctorId);
+checkPstmt.setDate(2, appointmentDate);
+ResultSet checkRs = checkPstmt.executeQuery();
+
+if (checkRs.next() && checkRs.getInt(1) < 10) { // Max 10 appointments per day
+    String insertSql = "INSERT INTO appointments (patient_id, doctor_id, appointment_date, time_slot, status) VALUES (?, ?, ?, ?, ?)";
+    PreparedStatement insertPstmt = conn.prepareStatement(insertSql);
+    insertPstmt.setInt(1, patientId);
+    insertPstmt.setInt(2, doctorId);
+    insertPstmt.setDate(3, appointmentDate);
+    insertPstmt.setString(4, "10:00 AM");
+    insertPstmt.setString(5, "CONFIRMED");
+    insertPstmt.executeUpdate();
+    System.out.println("Appointment booked successfully!");
+} else {
+    System.out.println("No slots available!");
+}
+\`\`\`
+
+**What Happens:**
+- You select doctor and date
+- JDBC checks available slots
+- If available, appointment saved
+- You receive confirmation
+
+---
+
 ## Why Do You Need JDBC?
 
 Think about it. Your Java code runs in memory. Your database stores data on disk. They're two completely different worlds. JDBC is the bridge between them.
