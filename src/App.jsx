@@ -14,7 +14,7 @@ function App() {
   return (
     <AuthProvider>
       <ContributionProvider>
-        <Router basename="/coretocloud">
+        <Router basename="/learnstackhub">
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />

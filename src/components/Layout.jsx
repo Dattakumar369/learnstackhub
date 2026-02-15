@@ -327,7 +327,7 @@ function Layout() {
             <ul>
               <li><Link to="/about">About Us</Link></li>
               <li><Link to="/contact">Contact</Link></li>
-              <li><a href="https://github.com/Dattakumar369/coretocloud" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+              <li><a href="https://github.com/Dattakumar369/learnstackhub" target="_blank" rel="noopener noreferrer">GitHub</a></li>
             </ul>
           </div>
           
