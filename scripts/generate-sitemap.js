@@ -206,17 +206,22 @@ async function generateSitemap() {
     
     xml += `</urlset>`;
     
-    // Write to public directory
+    // Write to project root (same level as package.json, index.html)
+    const projectRoot = path.join(__dirname, '..');
+    const rootSitemapPath = path.join(projectRoot, 'sitemap.xml');
+    fs.writeFileSync(rootSitemapPath, xml, 'utf8');
+    
+    // Also write to public directory so it gets copied to dist/ during build
     const publicDir = path.join(__dirname, '..', 'public');
     if (!fs.existsSync(publicDir)) {
       fs.mkdirSync(publicDir, { recursive: true });
     }
-    
-    const sitemapPath = path.join(publicDir, 'sitemap.xml');
-    fs.writeFileSync(sitemapPath, xml, 'utf8');
+    const publicSitemapPath = path.join(publicDir, 'sitemap.xml');
+    fs.writeFileSync(publicSitemapPath, xml, 'utf8');
     
     console.log(`✅ Sitemap generated successfully!`);
-    console.log(`📄 Location: ${sitemapPath}`);
+    console.log(`📄 Root location: ${rootSitemapPath}`);
+    console.log(`📄 Public location: ${publicSitemapPath}`);
     console.log(`🌐 URL: ${baseUrl}/sitemap.xml`);
     console.log(`📊 Total URLs: ${allPages.length}`);
     console.log(`   - Static pages: ${staticPages.length}`);
