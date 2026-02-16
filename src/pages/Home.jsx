@@ -52,13 +52,12 @@ function Home() {
         </div>
         
         <h1 className="hero-title">
-          Learn <span className="highlight">Java</span> Full
-          <br />Stack Development 📚
+          Learn <span className="highlight">Java</span> Full Stack Development
+          <br />Free Java Tutorials & Courses 📚
         </h1>
         
         <p className="hero-subtitle">
-          Your complete journey from Java fundamentals to cloud-ready full-stack development. 
-          Master Core Java, Servlets, JSP, and JDBC with interactive tutorials and live code execution.
+          Master Java Full Stack Development with free interactive tutorials. Learn Core Java, Servlets, JSP, JDBC, Hibernate, MySQL, React, and AWS step-by-step. Perfect for beginners and advanced developers. Start learning Java programming today!
         </p>
         
         <div className="hero-buttons">

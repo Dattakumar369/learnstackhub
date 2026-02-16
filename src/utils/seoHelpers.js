@@ -137,38 +137,68 @@ export const generateSEODescription = (topic) => {
  */
 export const generateSEOKeywords = (topic) => {
   if (!topic) {
-    return 'Java, Java Tutorial, Spring Boot, React, Full Stack, Programming, Learn Java, JDBC, Servlets, JSP';
+    return 'learn java, java tutorial, java full stack, java programming, java development, servlets tutorial, jsp tutorial, jdbc tutorial, hibernate tutorial, mysql tutorial, react tutorial, aws tutorial, java for beginners, java course, free java tutorial, java online, java training, java certification, java web development, spring boot tutorial, java backend, java frontend, java database, java mysql, java servlet, java jsp, java jdbc, java hibernate, java react, java aws, java cloud, java microservices';
   }
   
   const { title, courseTitle } = topic;
   const courseName = courseTitle || 'Java';
   
-  // Generate long-tail keywords
+  // Generate long-tail keywords with high search volume terms
   const baseKeywords = [
     title,
     `${title} tutorial`,
     `${title} example`,
     `${title} for beginners`,
-    `${courseName} ${title}`,
     `learn ${title}`,
     `${title} step by step`,
     `${title} with code`,
     `${title} program`,
+    `${title} guide`,
+    `how to ${title.toLowerCase()}`,
+    `${title} explained`,
+    `${title} complete guide`,
+    `free ${title} tutorial`,
+    `${title} online`,
+    `${courseName} ${title}`,
+    `${title} ${courseName}`,
   ];
   
-  // Add course-specific keywords
+  // Add course-specific high-volume keywords
   const courseKeywords = {
-    'JDBC': ['JDBC tutorial', 'Java database connectivity', 'JDBC MySQL', 'JDBC example', 'JDBC connection'],
-    'Servlet': ['Servlet tutorial', 'Java servlet', 'Servlet example', 'Servlet lifecycle', 'Java web development'],
-    'JSP': ['JSP tutorial', 'JavaServer Pages', 'JSP example', 'JSP implicit objects', 'JSP JSTL'],
-    'Hibernate': ['Hibernate tutorial', 'Hibernate ORM', 'Hibernate example', 'Hibernate configuration', 'JPA Hibernate'],
-    'MySQL': ['MySQL tutorial', 'MySQL database', 'MySQL query', 'MySQL example', 'SQL tutorial'],
+    'JDBC': ['JDBC tutorial', 'Java database connectivity', 'JDBC MySQL', 'JDBC example', 'JDBC connection', 'learn JDBC', 'JDBC for beginners', 'JDBC programming', 'Java JDBC', 'JDBC complete guide', 'JDBC step by step', 'JDBC online tutorial', 'free JDBC tutorial'],
+    'Servlet': ['Servlet tutorial', 'Java servlet', 'Servlet example', 'Servlet lifecycle', 'Java web development', 'learn servlet', 'Servlet for beginners', 'Servlet programming', 'Java Servlet', 'Servlet complete guide', 'Servlet step by step', 'Servlet online tutorial', 'free Servlet tutorial', 'Java web application'],
+    'JSP': ['JSP tutorial', 'JavaServer Pages', 'JSP example', 'JSP implicit objects', 'JSP JSTL', 'learn JSP', 'JSP for beginners', 'JSP programming', 'Java JSP', 'JSP complete guide', 'JSP step by step', 'JSP online tutorial', 'free JSP tutorial', 'JSP web development'],
+    'Hibernate': ['Hibernate tutorial', 'Hibernate ORM', 'Hibernate example', 'Hibernate configuration', 'JPA Hibernate', 'learn Hibernate', 'Hibernate for beginners', 'Hibernate programming', 'Java Hibernate', 'Hibernate complete guide', 'Hibernate step by step', 'Hibernate online tutorial', 'free Hibernate tutorial', 'Hibernate ORM framework'],
+    'MySQL': ['MySQL tutorial', 'MySQL database', 'MySQL query', 'MySQL example', 'SQL tutorial', 'learn MySQL', 'MySQL for beginners', 'MySQL programming', 'MySQL database tutorial', 'MySQL complete guide', 'MySQL step by step', 'MySQL online tutorial', 'free MySQL tutorial', 'SQL database'],
+    'Core Java': ['Java tutorial', 'Java programming', 'Java for beginners', 'learn Java', 'Java course', 'Java online', 'Java training', 'Java certification', 'Java development', 'Java complete guide', 'Java step by step', 'free Java tutorial', 'Java programming language'],
+    'HTML': ['HTML tutorial', 'HTML for beginners', 'learn HTML', 'HTML course', 'HTML online', 'HTML training', 'HTML web development', 'HTML complete guide', 'HTML step by step', 'free HTML tutorial', 'HTML programming'],
+    'CSS': ['CSS tutorial', 'CSS for beginners', 'learn CSS', 'CSS course', 'CSS online', 'CSS training', 'CSS web development', 'CSS complete guide', 'CSS step by step', 'free CSS tutorial', 'CSS styling'],
   };
   
   const courseKey = courseName.replace(' Tutorial', '').split(' ')[0];
   if (courseKeywords[courseKey]) {
     baseKeywords.push(...courseKeywords[courseKey]);
   }
+  
+  // Add generic high-volume keywords
+  baseKeywords.push(
+    'java tutorial',
+    'java programming',
+    'learn java',
+    'java for beginners',
+    'java course',
+    'java online',
+    'java training',
+    'java certification',
+    'java development',
+    'java full stack',
+    'java web development',
+    'free java tutorial',
+    'java programming tutorial',
+    'java tutorial online',
+    'java step by step',
+    'java complete guide'
+  );
   
   return baseKeywords.join(', ');
 };
