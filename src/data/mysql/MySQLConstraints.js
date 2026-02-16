@@ -651,3 +651,4 @@ WHERE TABLE_SCHEMA = 'constraints_demo';`
 
 export default mysqlConstraints;
 
+

@@ -563,3 +563,4 @@ public class Review {
 
 export default hibernateMapping;
 
+

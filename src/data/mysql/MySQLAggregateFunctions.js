@@ -592,3 +592,4 @@ FROM orders;`
 
 export default mysqlAggregateFunctions;
 
+

@@ -428,3 +428,4 @@ public class ArchitectureDemo {
 
 export default hibernateArchitecture;
 
+

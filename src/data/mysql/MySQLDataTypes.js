@@ -544,3 +544,4 @@ SELECT * FROM products;`
 
 export default mysqlDataTypes;
 
+

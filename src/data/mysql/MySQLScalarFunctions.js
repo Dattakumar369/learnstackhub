@@ -700,3 +700,4 @@ FROM products;`
 
 export default mysqlScalarFunctions;
 
+

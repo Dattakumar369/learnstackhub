@@ -462,3 +462,4 @@ ON UPDATE CASCADE;`
 
 export default mysqlDDL;
 
+

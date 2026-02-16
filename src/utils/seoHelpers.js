@@ -173,3 +173,4 @@ export const generateSEOKeywords = (topic) => {
   return baseKeywords.join(', ');
 };
 
+

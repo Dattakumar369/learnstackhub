@@ -35,6 +35,7 @@ import StructuredData from '../components/StructuredData';
 import FAQSection from '../components/FAQSection';
 import InternalLinks from '../components/InternalLinks';
 import { generateSEOTitle } from '../utils/seoHelpers';
+import { trackTutorialView, trackButtonClick } from '../config/analytics';
 
 function Tutorial() {
   const { topicId } = useParams();
@@ -71,17 +72,28 @@ function Tutorial() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [topicId]);
+    
+    // Track tutorial view in Google Analytics
+    if (currentTopic) {
+      trackTutorialView(topicId, currentTopic.title);
+    }
+  }, [topicId, currentTopic]);
 
   const copyCode = async () => {
     if (currentTopic?.code) {
       await navigator.clipboard.writeText(currentTopic.code);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
+      
+      // Track copy code action
+      trackButtonClick('copy_code', 'tutorial');
     }
   };
 
   const runCode = async () => {
+    // Track code execution
+    trackButtonClick('run_code', 'tutorial');
+    
     setIsRunning(true);
     setOutput('Compiling and executing...');
     
@@ -104,6 +116,9 @@ function Tutorial() {
     if (currentTopic?.code) {
       setEditorCode(currentTopic.code);
       setOutput('Click "Run Code" to execute your code');
+      
+      // Track reset code action
+      trackButtonClick('reset_code', 'tutorial');
     }
   };
 
@@ -114,8 +129,10 @@ function Tutorial() {
   const handleEditClick = () => {
     if (isLoggedIn()) {
       setShowEditModal(true);
+      trackButtonClick('edit_tutorial', 'tutorial');
     } else {
       openLoginModal();
+      trackButtonClick('edit_tutorial_login_required', 'tutorial');
     }
   };
 

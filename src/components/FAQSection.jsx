@@ -153,3 +153,4 @@ function FAQSection({ topicId, courseTitle }) {
 
 export default FAQSection;
 
+

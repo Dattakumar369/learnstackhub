@@ -8,6 +8,7 @@ import LoginModal from './LoginModal';
 import ContributeModal from './ContributeModal';
 import AdSense from './AdSense';
 import { ADSENSE_CONFIG } from '../config/adsense';
+import { trackSearch, trackCourseSelect, trackButtonClick } from '../config/analytics';
 import logoImage from '../assets/LSH.png';
 
 function Layout() {
@@ -43,6 +44,15 @@ function Layout() {
         topic.description?.toLowerCase().includes(searchQuery.toLowerCase())
       );
       setFilteredTopics(filtered);
+      
+      // Track search in Google Analytics (debounced)
+      const timeoutId = setTimeout(() => {
+        if (searchQuery.trim().length >= 3) {
+          trackSearch(searchQuery.trim());
+        }
+      }, 1000);
+      
+      return () => clearTimeout(timeoutId);
     } else {
       setFilteredTopics([]);
     }
@@ -55,8 +65,10 @@ function Layout() {
   const handleAddClick = () => {
     if (isLoggedIn()) {
       setShowContributeModal(true);
+      trackButtonClick('add_tutorial', 'header');
     } else {
       openLoginModal();
+      trackButtonClick('add_tutorial_login_required', 'header');
     }
   };
 
@@ -146,7 +158,10 @@ function Layout() {
             )}
           </div>
 
-          <button className="nav-add-btn" onClick={handleAddClick}>
+          <button 
+            className="nav-add-btn" 
+            onClick={handleAddClick}
+          >
             <Plus size={16} />
             <span>Add Tutorial</span>
           </button>

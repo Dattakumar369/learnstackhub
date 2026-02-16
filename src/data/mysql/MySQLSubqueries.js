@@ -557,3 +557,4 @@ AND p.stock > 0;`
 
 export default mysqlSubqueries;
 
+

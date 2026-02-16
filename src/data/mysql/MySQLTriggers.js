@@ -739,3 +739,4 @@ SHOW CREATE TRIGGER track_price_change;`
 
 export default mysqlTriggers;
 
+

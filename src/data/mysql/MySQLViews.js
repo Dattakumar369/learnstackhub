@@ -474,3 +474,4 @@ DROP VIEW IF EXISTS old_view;`
 
 export default mysqlViews;
 
+

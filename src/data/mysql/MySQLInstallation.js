@@ -491,3 +491,4 @@ SHOW TABLE STATUS LIKE 'test_table';
 
 export default mysqlInstallation;
 
+

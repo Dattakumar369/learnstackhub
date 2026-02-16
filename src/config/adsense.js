@@ -33,3 +33,4 @@ export const isAdSenseConfigured = () => {
   return ADSENSE_CONFIG.publisherId !== 'ca-pub-XXXXXXXXXXXXXXXX';
 };
 
+

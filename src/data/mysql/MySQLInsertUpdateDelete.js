@@ -571,3 +571,4 @@ WHERE order_date < DATE_SUB(CURRENT_DATE, INTERVAL 2 YEAR);`
 
 export default mysqlInsertUpdateDelete;
 
+

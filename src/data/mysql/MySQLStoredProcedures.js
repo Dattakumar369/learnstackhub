@@ -665,3 +665,4 @@ SHOW CREATE PROCEDURE GetUserById;`
 
 export default mysqlStoredProcedures;
 
+

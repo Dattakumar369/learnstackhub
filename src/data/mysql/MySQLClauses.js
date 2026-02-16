@@ -623,3 +623,4 @@ ORDER BY avg_price DESC;`
 
 export default mysqlClauses;
 
+

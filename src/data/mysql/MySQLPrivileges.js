@@ -475,3 +475,4 @@ ALTER USER 'testuser'@'localhost' IDENTIFIED BY 'new_secure_password';
 
 export default mysqlPrivileges;
 
+
