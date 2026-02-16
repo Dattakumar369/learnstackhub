@@ -6,6 +6,7 @@ import { useAuth } from '../context/AuthContext';
 import { useContributions } from '../context/ContributionContext';
 import LoginModal from './LoginModal';
 import ContributeModal from './ContributeModal';
+import ConsentBanner from './ConsentBanner';
 import AdSense from './AdSense';
 import { ADSENSE_CONFIG } from '../config/adsense';
 import { trackSearch, trackCourseSelect, trackButtonClick } from '../config/analytics';
@@ -394,6 +395,9 @@ function Layout() {
         onClose={() => setShowContributeModal(false)}
         mode="add"
       />
+      
+      {/* Consent Banner */}
+      <ConsentBanner />
     </div>
   );
 }
