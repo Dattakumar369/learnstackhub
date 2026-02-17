@@ -37,7 +37,8 @@ function Home() {
     jdbc: 'Connect Java applications to databases with JDBC and MySQL',
     servlets: 'Build dynamic web applications with Java Servlets',
     jsp: 'Create powerful server-side web pages with JSP',
-    hibernate: 'Master Hibernate ORM - mapping, relationships, caching, batch processing & more'
+    hibernate: 'Master Hibernate ORM - mapping, relationships, caching, batch processing & more',
+    git: 'Learn Git version control and GitHub collaboration - branches, commits, pull requests & workflows'
   };
 
   return (

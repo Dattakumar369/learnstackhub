@@ -348,20 +348,21 @@ function Layout() {
             <p>Your complete journey from Core Java to Cloud-Ready Full-Stack Development</p>
           </div>
           
-          <div className="footer-section">
-            <h4>Learn</h4>
-            <ul>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/tutorial/html-introduction">HTML</Link></li>
-              <li><Link to="/tutorial/css-introduction">CSS</Link></li>
-              <li><Link to="/tutorial/java-introduction">Core Java</Link></li>
-              <li><Link to="/tutorial/mysql-introduction">MySQL</Link></li>
-              <li><Link to="/tutorial/jdbc-introduction">JDBC</Link></li>
-              <li><Link to="/tutorial/servlet-introduction">Servlets</Link></li>
-              <li><Link to="/tutorial/jsp-introduction">JSP</Link></li>
-              <li><Link to="/tutorial/hibernate-introduction">Hibernate</Link></li>
-            </ul>
-          </div>
+      <div className="footer-section">
+        <h4>Learn</h4>
+        <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/tutorial/html-introduction">HTML</Link></li>
+          <li><Link to="/tutorial/css-introduction">CSS</Link></li>
+          <li><Link to="/tutorial/java-introduction">Core Java</Link></li>
+          <li><Link to="/tutorial/mysql-introduction">MySQL</Link></li>
+          <li><Link to="/tutorial/jdbc-introduction">JDBC</Link></li>
+          <li><Link to="/tutorial/servlet-introduction">Servlets</Link></li>
+          <li><Link to="/tutorial/jsp-introduction">JSP</Link></li>
+          <li><Link to="/tutorial/hibernate-introduction">Hibernate</Link></li>
+          <li><Link to="/tutorial/git-introduction">Git & GitHub</Link></li>
+        </ul>
+      </div>
           
           <div className="footer-section">
             <h4>Company</h4>

@@ -164,6 +164,21 @@ import hibernateCaching from './hibernate/HibernateCaching';
 import hibernateRelationships from './hibernate/HibernateRelationships';
 import hibernateBatchProcessing from './hibernate/HibernateBatchProcessing';
 
+// Git & GitHub
+import gitIntroduction from './git/GitIntroduction';
+import gitInstallation from './git/GitInstallation';
+import gitBasics from './git/GitBasics';
+import gitBranches from './git/GitBranches';
+import githubBasics from './git/GitHubBasics';
+import githubPullRequests from './git/GitHubPullRequests';
+import gitWorkflow from './git/GitWorkflow';
+import gitMergeConfig from './git/GitMergeConfig';
+import gitBranchProtection from './git/GitBranchProtection';
+import gitDeployment from './git/GitDeployment';
+import githubSecurity from './git/GitHubSecurity';
+import githubTeams from './git/GitHubTeams';
+import gitRevert from './git/GitRevert';
+
 export const courseStructure = {
   html: {
     title: "HTML",
@@ -558,6 +573,41 @@ export const courseStructure = {
           hibernateCaching,
           hibernateRelationships,
           hibernateBatchProcessing
+        ]
+      }
+    }
+  },
+  git: {
+    title: "Git & GitHub",
+    icon: "📦",
+    color: "#F05032",
+    sections: {
+      basics: {
+        title: "Git Basics",
+        topics: [
+          gitIntroduction,
+          gitInstallation,
+          gitBasics,
+          gitBranches
+        ]
+      },
+      github: {
+        title: "GitHub Basics",
+        topics: [
+          githubBasics,
+          githubPullRequests,
+          gitWorkflow
+        ]
+      },
+      advanced: {
+        title: "Advanced Topics",
+        topics: [
+          gitMergeConfig,
+          gitBranchProtection,
+          gitDeployment,
+          githubSecurity,
+          githubTeams,
+          gitRevert
         ]
       }
     }
