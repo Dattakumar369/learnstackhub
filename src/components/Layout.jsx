@@ -361,6 +361,7 @@ function Layout() {
           <li><Link to="/tutorial/jsp-introduction">JSP</Link></li>
           <li><Link to="/tutorial/hibernate-introduction">Hibernate</Link></li>
           <li><Link to="/tutorial/git-introduction">Git & GitHub</Link></li>
+          <li><Link to="/tutorial/maven-introduction">Maven</Link></li>
         </ul>
       </div>
           

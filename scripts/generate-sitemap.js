@@ -154,6 +154,23 @@ async function generateSitemap() {
       'hibernate-project-setup'
     ];
     
+    // Git & GitHub Topics
+    const gitTopics = [
+      'git-introduction', 'git-installation', 'git-basics', 'git-branches',
+      'github-basics', 'github-pull-requests', 'git-workflow',
+      'git-merge-config', 'git-branch-protection', 'git-deployment',
+      'github-security', 'github-teams', 'git-revert'
+    ];
+    
+    // Maven Topics
+    const mavenTopics = [
+      'maven-introduction', 'maven-why', 'maven-installation', 'maven-project-structure',
+      'maven-pom-xml', 'maven-create-project', 'maven-build-lifecycle',
+      'maven-repositories', 'maven-dependency-management', 'maven-plugins',
+      'maven-multi-module', 'maven-spring-boot', 'maven-commands',
+      'maven-common-errors', 'maven-vs-gradle', 'maven-best-practices'
+    ];
+    
     // Combine all topics
     const allTopicIds = [
       ...htmlTopics,
@@ -170,7 +187,9 @@ async function generateSitemap() {
       ...mysqlTopics,
       ...servletTopics,
       ...jspTopics,
-      ...hibernateTopics
+      ...hibernateTopics,
+      ...gitTopics,
+      ...mavenTopics
     ];
     
     // Create tutorial pages
