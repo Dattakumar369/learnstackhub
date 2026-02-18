@@ -26,171 +26,42 @@ const staticPages = [
 // We need to use dynamic import since we're in a Node.js script
 async function generateSitemap() {
   try {
-    // Use createRequire to import the ES module
-    const require = createRequire(import.meta.url);
-    const dataPath = path.join(__dirname, '..', 'src', 'data', 'index.js');
-    
-    // For ES modules, we need to use dynamic import
-    // Since the data files are ES modules, we'll read and parse them
-    // Alternative: use a build tool or convert to CommonJS
-    
-    // For now, let's manually list all topics by reading the course structure
-    // This is a comprehensive list based on the course structure
-    
+    const dataDir = path.join(__dirname, '..', 'src', 'data');
     const tutorialPages = [];
+    const foundTopicIds = new Set();
     
-    // Read the course structure file to extract all topic IDs
-    const courseStructureFile = fs.readFileSync(dataPath, 'utf8');
+    // Recursively read all .js files in the data directory
+    function readTopicFiles(dir) {
+      const files = fs.readdirSync(dir);
+      
+      files.forEach(file => {
+        const filePath = path.join(dir, file);
+        const stat = fs.statSync(filePath);
+        
+        if (stat.isDirectory()) {
+          // Recursively read subdirectories
+          readTopicFiles(filePath);
+        } else if (file.endsWith('.js') && file !== 'index.js') {
+          // Read each topic file and extract the ID
+          try {
+            const fileContent = fs.readFileSync(filePath, 'utf8');
+            // Look for: id: 'topic-id', or id: "topic-id",
+            const idMatch = fileContent.match(/id:\s*['"]([^'"]+)['"]/);
+            if (idMatch && idMatch[1]) {
+              foundTopicIds.add(idMatch[1]);
+            }
+          } catch (error) {
+            console.warn(`Warning: Could not read ${filePath}:`, error.message);
+          }
+        }
+      });
+    }
     
-    // Extract all topic imports and IDs from the file
-    // This regex finds topic imports and their usage in sections
-    const topicImportRegex = /import\s+(\w+)\s+from\s+['"]([^'"]+)['"]/g;
-    const topicUsageRegex = /(\w+)(?:,|\s*$)/gm;
+    // Read all topic files
+    readTopicFiles(dataDir);
     
-    // We'll use a simpler approach: manually maintain the list or parse the structure
-    // Since parsing ES modules in Node.js is complex, let's create a comprehensive list
-    
-    // HTML Topics
-    const htmlTopics = [
-      'html-introduction', 'html-structure', 'html-links', 'html-images',
-      'html-lists', 'html-tables', 'html-forms', 'html-semantic-elements',
-      'html-media', 'html-iframe', 'html-marquee', 'html-dom', 'html-best-practices'
-    ];
-    
-    // CSS Topics
-    const cssTopics = [
-      'css-introduction', 'css-selectors', 'css-colors-backgrounds', 'css-box-model',
-      'css-text-fonts', 'css-display-positioning', 'css-flexbox', 'css-grid',
-      'css-responsive', 'css-animations'
-    ];
-    
-    // Core Java - Basics
-    const javaBasicsTopics = [
-      'java-introduction', 'java-features', 'java-environment-setup', 'java-syntax',
-      'java-variables', 'java-data-types', 'java-operators', 'java-methods', 'java-keywords'
-    ];
-    
-    // Core Java - Control Flow
-    const javaControlFlowTopics = [
-      'if-else', 'switch-statement', 'for-loop', 'while-loop',
-      'do-while-loop', 'break-continue'
-    ];
-    
-    // Core Java - OOPs
-    const javaOOPsTopics = [
-      'classes-objects', 'constructors', 'this-keyword', 'static-keyword',
-      'inheritance', 'method-overriding', 'super-keyword', 'polymorphism',
-      'abstraction', 'interfaces', 'encapsulation', 'access-modifiers',
-      'final-keyword', 'abstract-classes', 'nested-classes', 'wrapper-classes'
-    ];
-    
-    // Core Java - Arrays
-    const javaArraysTopics = [
-      'single-dimensional-array', 'multi-dimensional-array', 'array-methods'
-    ];
-    
-    // Core Java - Strings
-    const javaStringsTopics = [
-      'string-introduction', 'string-methods', 'stringbuffer', 'stringbuilder'
-    ];
-    
-    // Core Java - Collections
-    const javaCollectionsTopics = [
-      'collections-introduction', 'arraylist', 'linkedlist', 'vector',
-      'stack', 'queue', 'priorityqueue', 'hashset', 'linkedhashset',
-      'treeset', 'hashmap', 'linkedhashmap', 'treemap', 'hashtable'
-    ];
-    
-    // Core Java - Exception Handling
-    const javaExceptionTopics = [
-      'exception-introduction', 'try-catch', 'finally-block', 'throw-throws',
-      'custom-exceptions', 'exception-best-practices'
-    ];
-    
-    // Core Java - Multithreading
-    const javaMultithreadingTopics = [
-      'multithreading-introduction', 'thread-lifecycle', 'thread-methods',
-      'synchronization', 'deadlock', 'inter-thread-communication'
-    ];
-    
-    // JDBC Topics
-    const jdbcTopics = [
-      'jdbc-introduction', 'jdbc-architecture', 'jdbc-drivers', 'jdbc-connection',
-      'jdbc-statement', 'jdbc-preparedstatement', 'jdbc-callablestatement',
-      'jdbc-resultset', 'jdbc-metadata', 'jdbc-batch-processing', 'jdbc-transactions',
-      'jdbc-project-setup'
-    ];
-    
-    // MySQL Topics
-    const mysqlTopics = [
-      'mysql-introduction', 'mysql-installation', 'mysql-create-database',
-      'mysql-data-types', 'mysql-ddl', 'mysql-dql', 'mysql-select',
-      'mysql-insert-update-delete', 'mysql-clauses', 'mysql-joins',
-      'mysql-subqueries', 'mysql-aggregate-functions', 'mysql-scalar-functions',
-      'mysql-constraints', 'mysql-indexes', 'mysql-views', 'mysql-stored-procedures',
-      'mysql-triggers', 'mysql-transactions', 'mysql-privileges'
-    ];
-    
-    // Servlet Topics
-    const servletTopics = [
-      'servlet-introduction', 'servlet-architecture', 'servlet-lifecycle',
-      'servlet-request-response', 'servlet-session-management', 'servlet-cookies',
-      'servlet-filter', 'servlet-listener', 'servlet-annotations',
-      'servlet-frontend-integration', 'tomcat-server'
-    ];
-    
-    // JSP Topics
-    const jspTopics = [
-      'jsp-introduction', 'jsp-architecture', 'jsp-lifecycle', 'jsp-scripting-elements',
-      'jsp-directives', 'jsp-actions', 'jsp-implicit-objects', 'jsp-expression-language',
-      'jsp-jstl', 'jsp-custom-tags', 'jsp-mvc-pattern'
-    ];
-    
-    // Hibernate Topics
-    const hibernateTopics = [
-      'hibernate-introduction', 'hibernate-architecture', 'hibernate-configuration',
-      'hibernate-mapping', 'hibernate-relationships', 'hibernate-hql',
-      'hibernate-locking', 'hibernate-caching', 'hibernate-batch-processing',
-      'hibernate-project-setup'
-    ];
-    
-    // Git & GitHub Topics
-    const gitTopics = [
-      'git-introduction', 'git-installation', 'git-basics', 'git-branches',
-      'github-basics', 'github-pull-requests', 'git-workflow',
-      'git-merge-config', 'git-branch-protection', 'git-deployment',
-      'github-security', 'github-teams', 'git-revert'
-    ];
-    
-    // Maven Topics
-    const mavenTopics = [
-      'maven-introduction', 'maven-why', 'maven-installation', 'maven-project-structure',
-      'maven-pom-xml', 'maven-create-project', 'maven-build-lifecycle',
-      'maven-repositories', 'maven-dependency-management', 'maven-plugins',
-      'maven-multi-module', 'maven-spring-boot', 'maven-commands',
-      'maven-common-errors', 'maven-vs-gradle', 'maven-best-practices'
-    ];
-    
-    // Combine all topics
-    const allTopicIds = [
-      ...htmlTopics,
-      ...cssTopics,
-      ...javaBasicsTopics,
-      ...javaControlFlowTopics,
-      ...javaOOPsTopics,
-      ...javaArraysTopics,
-      ...javaStringsTopics,
-      ...javaCollectionsTopics,
-      ...javaExceptionTopics,
-      ...javaMultithreadingTopics,
-      ...jdbcTopics,
-      ...mysqlTopics,
-      ...servletTopics,
-      ...jspTopics,
-      ...hibernateTopics,
-      ...gitTopics,
-      ...mavenTopics
-    ];
+    // Convert Set to Array and create tutorial pages
+    const allTopicIds = Array.from(foundTopicIds).sort();
     
     // Create tutorial pages
     allTopicIds.forEach(topicId => {

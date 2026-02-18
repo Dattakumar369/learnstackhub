@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { AuthProvider } from './context/AuthContext';
 import { ContributionProvider } from './context/ContributionContext';
@@ -14,6 +14,14 @@ import { initGA } from './config/analytics';
 import { usePageTracking } from './hooks/usePageTracking';
 import './App.css';
 
+// URL redirects mapping for old incorrect URLs to correct ones
+const urlRedirects = {
+  'servlet-architecture': 'servlet-introduction',
+  'servlet-filter': 'filters-listeners',
+  'servlet-listener': 'filters-listeners',
+  'jdbc-architecture': 'jdbc-introduction'
+};
+
 // Component to initialize GA and track routes
 function AppWithTracking() {
   // Initialize Google Analytics on mount
@@ -28,6 +36,23 @@ function AppWithTracking() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
+        {/* Redirect old incorrect URLs to correct ones */}
+        <Route 
+          path="tutorial/servlet-architecture" 
+          element={<Navigate to="/tutorial/servlet-introduction" replace />} 
+        />
+        <Route 
+          path="tutorial/servlet-filter" 
+          element={<Navigate to="/tutorial/filters-listeners" replace />} 
+        />
+        <Route 
+          path="tutorial/servlet-listener" 
+          element={<Navigate to="/tutorial/filters-listeners" replace />} 
+        />
+        <Route 
+          path="tutorial/jdbc-architecture" 
+          element={<Navigate to="/tutorial/jdbc-introduction" replace />} 
+        />
         <Route path="tutorial/:topicId" element={<Tutorial />} />
         <Route path="privacy" element={<PrivacyPolicy />} />
         <Route path="terms" element={<Terms />} />
