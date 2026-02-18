@@ -49,6 +49,11 @@ function AppWithTracking() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
+        {/* Redirect index.html to home */}
+        <Route 
+          path="index.html" 
+          element={<Navigate to="/" replace />} 
+        />
         {/* Redirect old incorrect URLs to correct ones */}
         <Route 
           path="tutorial/servlet-architecture" 
